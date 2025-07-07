@@ -1,0 +1,221 @@
+Essa lista cobre o que você vai precisar na prática ao longo da construção, mesmo que vá usando aos poucos — e é focada em:
+controle de processos,  segurança,  acesso ao sistema,  filesystem, 🛠 execução de programas, e  futuros módulos.
+
+🔧 1. Controle de processos
+cpp
+Copy
+Edit
+fork()
+execve()
+execvp()
+execl()
+wait()
+waitpid()
+kill()
+getpid()
+getppid()
+getuid()
+geteuid()
+setuid()
+setgid()
+setpgid()
+setsid()
+🧲 2. ptrace e tracing
+cpp
+Copy
+Edit
+ptrace()
+PTRACE_TRACEME
+PTRACE_PEEKDATA
+PTRACE_POKEDATA
+PTRACE_SYSCALL
+PTRACE_GETREGS
+PTRACE_SETREGS
+PTRACE_CONT
+PTRACE_KILL
+PTRACE_SINGLESTEP
+PTRACE_ATTACH
+PTRACE_DETACH
+📚 3. Manipulação de registradores (x86_64)
+cpp
+Copy
+Edit
+struct user_regs_struct
+regs.rax       // retorno
+regs.orig_rax  // syscall ID
+regs.rdi-rsi-rdx-r10-r8-r9 // argumentos
+💾 4. Sistema de arquivos
+cpp
+Copy
+Edit
+open()
+openat()
+read()
+write()
+close()
+unlink()
+lseek()
+stat()
+fstat()
+mkdir()
+rmdir()
+chmod()
+chown()
+rename()
+access()
+realpath()
+mount()
+umount()
+getcwd()
+opendir()
+readdir()
+closedir()
+symlink()
+readlink()
+🔒 5. Segurança & permissões
+cpp
+Copy
+Edit
+setuid()
+setgid()
+seteuid()
+setegid()
+capset()
+capget()
+prctl()
+seccomp()               // ativar modo seccomp
+unshare()               // separar namespaces
+clone()                 // criar processos isolados
+chroot()
+pivot_root()
+mprotect()
+mlock()
+munlock()
+🧰 6. Gerenciamento de memória/processo
+cpp
+Copy
+Edit
+mmap()
+munmap()
+mremap()
+brk()
+sbrk()
+mlock()
+getrlimit()
+setrlimit()
+🌐 7. Rede (pra isolamento de rede)
+cpp
+Copy
+Edit
+socket()
+bind()
+connect()
+listen()
+accept()
+send()
+recv()
+getaddrinfo()
+shutdown()
+setsockopt()
+getsockopt()
+🧠 8. C++ padrão (gerais úteis)
+cpp
+Copy
+Edit
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <thread>
+#include <mutex>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <regex>
+#include <chrono>
+#include <atomic>
+#include <memory>
+📦 9. Strings, buffers e memória
+cpp
+Copy
+Edit
+strcpy()
+strncpy()
+memcpy()
+memset()
+memcmp()
+strlen()
+strstr()
+strchr()
+snprintf()
+vsnprintf()
+malloc()
+calloc()
+realloc()
+free()
+🕵️ 10. Syscalls Linux específicas
+cpp
+Copy
+Edit
+SYS_open
+SYS_openat
+SYS_execve
+SYS_read
+SYS_write
+SYS_stat
+SYS_fork
+SYS_clone
+SYS_ptrace
+SYS_unlink
+SYS_mount
+SYS_chroot
+SYS_prctl
+SYS_seccomp
+🧩 11. Estruturas úteis
+cpp
+Copy
+Edit
+struct stat
+struct sockaddr
+struct sockaddr_in
+struct dirent
+struct rlimit
+struct utsname
+struct iovec
+📑 12. Headers comuns que você vai incluir
+cpp
+Copy
+Edit
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <thread>
+#include <mutex>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/wait.h>
+#include <sys/ptrace.h>
+#include <sys/user.h>
+#include <sys/syscall.h>
+#include <sys/mman.h>
+#include <sys/resource.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <dirent.h>
+#include <errno.h>
+#include <cstring>
+#include <cstdlib>
+#include <ctime>
+#include <signal.h>
+#include <linux/seccomp.h>
+#include <linux/filter.h>
+#include <linux/unistd.h>
+#include <linux/limits.h>
