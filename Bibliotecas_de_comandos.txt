@@ -219,3 +219,108 @@ Edit
 #include <linux/filter.h>
 #include <linux/unistd.h>
 #include <linux/limits.h>
+
+🔧 1. Controle de Processos
+Funções para criação, gerenciamento e finalização de processos:
+fork(): Cria um novo processo (clone do processo atual).
+execve(), execvp(), execl(): Substitui o processo atual por um novo programa.
+wait(), waitpid(): Espera por mudanças no estado de um processo filho.
+kill(): Envia um sinal para um processo.
+getpid(), getppid(): Obtém o PID do processo atual ou do pai.
+getuid(), geteuid(): Obtém o UID real/efetivo do usuário.
+setuid(), setgid(), seteuid(): Define UID/GID do processo.
+setpgid(), setsid(): Controla grupos de processos e sessões.
+
+🧲 2. ptrace e Tracing
+Funções para depuração e monitoramento de processos:
+ptrace(): Controla um processo para depuração (ler/escrever memória/registradores).
+Flags:
+
+PTRACE_TRACEME: Permite que o processo pai o traceie.
+PTRACE_PEEKDATA/POKEDATA: Lê/escreve na memória do processo.
+PTRACE_GETREGS/SETREGS: Acessa registradores.
+PTRACE_ATTACH/DETACH: Anexa/desanexa um processo.
+PTRACE_SYSCALL: Rastreia chamadas de sistema.
+
+📚 3. Manipulação de Registradores (x86_64)
+Estrutura para acessar registradores via ptrace:
+
+struct user_regs_struct:
+rax: Valor de retorno.
+orig_rax: Número da syscall.
+rdi, rsi, rdx, r10, r8, r9: Argumentos da syscall.
+
+💾 4. Sistema de Arquivos
+Funções para manipulação de arquivos/diretórios:
+
+open(), openat(): Abre arquivos.
+read(), write(), close(): Operações de E/S.
+stat(), fstat(): Obtém metadados.
+
+mkdir(), rmdir(): Cria/remove diretórios.
+chmod(), chown(): Altera permissões/dono.
+mount(), umount(): Gerencia sistemas de arquivos.
+opendir(), readdir(): Lista diretórios.
+
+🔒 5. Segurança & Permissões
+Funções para isolamento e segurança:
+
+capset(), capget(): Gerencia capacidades (Linux).
+prctl(): Controla atributos do processo.
+seccomp(): Restringe syscalls (sandboxing).
+unshare(), clone(): Isola namespaces (rede, PID, etc.).
+chroot(), pivot_root(): Cria ambientes isolados (jails).
+
+🧰 6. Gerenciamento de Memória/Processo
+Funções para alocação de memória:
+
+mmap(), munmap(): Mapeia/desmapeia memória.
+brk(), sbrk(): Ajusta o limite de heap.
+mlock(): Bloqueia memória na RAM.
+getrlimit(), setrlimit(): Define limites de recursos.
+
+🌐 7. Rede (Isolamento de Rede)
+Funções para comunicação em rede:
+
+socket(), bind(), connect(): Cria/conecta sockets.
+send(), recv(): Troca dados.
+setsockopt(): Configura opções do socket.
+🧠 8. C++ Padrão (Bibliotecas Úteis)
+Headers comuns para:
+
+E/S (<iostream>, <fstream>).
+Strings (<string>, <regex>).
+Containers (<vector>, <map>).
+Concorrência (<thread>, <mutex>).
+Sistema de arquivos (<filesystem>).
+
+📦 9. Strings, Buffers e Memória
+Funções de manipulação de memória:
+strcpy(), strncpy(): Copia strings.
+memcpy(), memset(): Manipula buffers.
+malloc(), free(): Alocação dinâmica.
+
+🕵️ 10. Syscalls Linux
+Números de syscalls (usados com ptrace ou syscall):
+SYS_open, SYS_execve, SYS_ptrace, etc.
+
+🧩 11. Estruturas Úteis
+Estruturas para operações específicas:
+struct stat: Metadados de arquivos.
+struct sockaddr_in: Endereço de rede (IPv4).
+struct dirent: Entrada de diretório.
+
+📑 12. Headers Comuns
+Inclusões frequentes em projetos de sistemas:
+Unix/Linux: <unistd.h>, <sys/syscall.h>.
+Sockets: <arpa/inet.h>.
+Segurança: <linux/seccomp.h>.
+
+Resumo:
+Controle de Processos: Criar, gerenciar e finalizar processos.
+Depuração: ptrace e registradores.
+Sistema de Arquivos: Manipulação de arquivos/diretórios.
+Segurança: Isolamento, capacidades, sandboxing.
+Memória/Rede: Alocação, sockets.
+C++: Bibliotecas padrão para tarefas gerais.
+Essas categorias são essenciais para desenvolvimento de sistemas em C/C++, especialmente para ferramentas como debuggers, containers, ou sistemas de sandboxing.
